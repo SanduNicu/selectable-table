@@ -1,5 +1,8 @@
+import { tableData } from "./data";
+import SelectableTable from "./selectable-table/SelectableTable";
+
 function App() {
-  return <>Boilerplate</>;
+  return <SelectableTable data={tableData} />;
 }
 
 export default App;
