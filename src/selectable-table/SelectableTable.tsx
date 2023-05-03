@@ -1,4 +1,4 @@
-import { memo, useMemo } from "react";
+import { memo, useCallback, useMemo } from "react";
 import Body from "./Body";
 import Header from "./Header";
 import UpperHeader from "./UpperHeader";
@@ -11,6 +11,8 @@ interface SelectableTableProps {
   tableData: TableLine[];
 }
 
+type Results = Partial<TableLine>[];
+
 const SelectableTable = memo((props: SelectableTableProps) => {
   const { tableData } = props;
 
@@ -22,6 +24,15 @@ const SelectableTable = memo((props: SelectableTableProps) => {
   const { selection, handleSelection, clearSelection, selectAll } =
     useSelection(availableData);
 
+  const handleDownload = useCallback(() => {
+    const selectionData = tableData.reduce<Results>(
+      (acc, { name, path, device }) =>
+        selection.includes(name) ? [...acc, { path, device }] : acc,
+      []
+    );
+    alert(JSON.stringify(selectionData));
+  }, [selection, tableData]);
+
   return (
     <section className={styles.table}>
       <UpperHeader
@@ -29,6 +40,7 @@ const SelectableTable = memo((props: SelectableTableProps) => {
         tableLength={availableData.length}
         clearSelection={clearSelection}
         selectAll={selectAll}
+        handleDownload={handleDownload}
       />
       <Header />
       <Body

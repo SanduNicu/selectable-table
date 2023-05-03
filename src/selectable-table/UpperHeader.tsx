@@ -7,10 +7,17 @@ interface UpperHeaderProps {
   tableLength: number;
   clearSelection: () => void;
   selectAll: () => void;
+  handleDownload: () => void;
 }
 
 const UpperHeader = memo((props: UpperHeaderProps) => {
-  const { selectionLength, tableLength, clearSelection, selectAll } = props;
+  const {
+    selectionLength,
+    tableLength,
+    clearSelection,
+    selectAll,
+    handleDownload,
+  } = props;
   const selectionCountLabel = selectionLength
     ? `Selected ${selectionLength}`
     : "None Selected";
@@ -35,7 +42,7 @@ const UpperHeader = memo((props: UpperHeaderProps) => {
         indeterminated={isIndeterminated}
       />
       <label>{selectionCountLabel}</label>
-      <button>Download Selected</button>
+      <button onClick={handleDownload}>Download Selected</button>
     </div>
   );
 });
