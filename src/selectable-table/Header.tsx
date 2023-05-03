@@ -1,7 +1,8 @@
+import { memo } from "react";
 import { columns } from "./constants";
 import styles from "./styles.module.scss";
 
-function Header() {
+const Header = memo(() => {
   return (
     <div className={styles.header}>
       {columns.map(({ name, width, key }) => (
@@ -11,6 +12,6 @@ function Header() {
       ))}
     </div>
   );
-}
+});
 
 export default Header;

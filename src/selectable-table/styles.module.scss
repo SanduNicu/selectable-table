@@ -48,11 +48,16 @@ $selectedColor: #f5f5f5;
 
   .row {
     @extend .common-row;
+    cursor: pointer;
+
+    &.disabled {
+      cursor: not-allowed;
+    }
 
     &:hover {
       background-color: $hoverColor;
-      cursor: pointer;
     }
+
     &.selected {
       background-color: $hoverColor;
     }

@@ -20,3 +20,5 @@ export const columns = [
     width: 10,
   },
 ];
+
+export const availableStatus = "available";
